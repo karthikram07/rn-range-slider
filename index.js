@@ -19,6 +19,7 @@ const Slider = (
     floatingLabel,
     allowLabelOverflow,
     disableRange,
+    minDistance,
     disabled,
     onValueChanged,
     renderThumb,
@@ -46,12 +47,23 @@ const Slider = (
 
   const updateThumbs = useCallback(() => {
     const { current: containerWidth } = containerWidthRef;
+    const {current: { isLow }} = gestureStateRef;
+
     if (!thumbWidth || !containerWidth) {
       return;
     }
     const { low, high } = inPropsRef.current;
     if (!disableRange) {
       const { current: highThumbX } = highThumbXRef;
+
+      if (minDistance && (high-low < (minDistance * step))) {
+        if (isLow) {
+          low = low - (step * minDistance);
+        } else {
+          high = high + (step * minDistance);
+        }
+      }
+
       const highPosition = (high - min) / (max - min) * (containerWidth - thumbWidth);
       highThumbX.setValue(highPosition);
     }
@@ -206,6 +218,7 @@ Slider.propTypes = {
   high: PropTypes.number,
   allowLabelOverflow: PropTypes.bool,
   disableRange: PropTypes.bool,
+  minDistance:PropTypes.number,
   disabled: PropTypes.bool,
   floatingLabel: PropTypes.bool,
   renderLabel: PropTypes.func,
@@ -221,6 +234,7 @@ Slider.defaultProps = {
   disabled: false,
   floatingLabel: false,
   onValueChanged: noop,
+  minDistance:0
 };
 
 export default memo(Slider);
