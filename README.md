@@ -72,7 +72,7 @@ const handleValueChange = useCallback((low, high) => {
 | `min` |  Minimum value of slider | number | _**required**_ |
 | `max` |  Maximum value of slider | number | _**required**_ |
 | `step` |  Step of slider | number | `1` |
-| `minDistance` |  Number of minimum steps to be maintained between the two thumbs. Multiples the passed value with the value of step passed. Eg: If step is 3600 and `minDistance` is passed as 2, the distance between the thumbs will be 7200 | number | `0` |
+| `minDistance` |  Number of minimum steps to be maintained between the two thumbs. Multiplies the passed value with the value of step passed. Eg: If step is 3600 and `minDistance` is passed as 2, the distance between the thumbs will be 7200 | number | `0` |
 | `low` |  Low value of slider | number | Initially `min` value will be set if not provided |
 | `high` |  High value of slider | number | Initially `max` value will be set if not provided |
 | `floatingLabel` |  If set to `true`, labels will not take space in component tree. Instead they will be rendered over the content above the slider (like a small popup). | boolean | `false` |
