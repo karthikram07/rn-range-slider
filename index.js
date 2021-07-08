@@ -52,7 +52,7 @@ const Slider = (
     if (!thumbWidth || !containerWidth) {
       return;
     }
-    const { low, high } = inPropsRef.current;
+    let { low, high } = inPropsRef.current;
     if (!disableRange) {
       const { current: highThumbX } = highThumbXRef;
 
